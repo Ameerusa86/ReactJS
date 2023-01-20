@@ -1,6 +1,6 @@
 * {
-  padding: 0;
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -9,42 +9,33 @@ html {
 }
 
 body {
-  background-color: aliceblue;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
   min-height: 100vh;
-}
-.header {
-  width: 100%;
-  padding: 0 0.25em;
-  background-color: blue;
-  display: flex;
-  align-items: center;
-  padding: 0.5rem;
-  color: #fff;
-  margin-bottom: 2rem;
+  font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.footer {
-  width: 100%;
-  padding: 0.25em;
-  background-color: blue;
-  padding: 0.5rem;
-  color: #fff;
-  margin-top: 2rem;
-  display: grid;
-  place-content: center;
-}
 .App {
-  margin-top: 2rem;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   height: 100vh;
   width: 100%;
   max-width: 500px;
   border: 1px solid mediumblue;
   margin: auto;
+}
+
+header {
+  width: 100%;
+  padding: 0 0.25em;
+  background-color: mediumblue;
+  color: aliceblue;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 main {
@@ -57,10 +48,19 @@ main {
   overflow-y: auto;
 }
 
+footer {
+  width: 100%;
+  padding: 0.25em;
+  background-color: mediumblue;
+  color: aliceblue;
+  display: grid;
+  place-content: center;
+}
+
 ul {
   width: 100%;
   list-style: none;
-  padding: 0 0.5em 0.25rem;
+  padding: 0 0.25rem 0.25rem;
 }
 
 ul li::before {
@@ -68,13 +68,12 @@ ul li::before {
 }
 
 .item {
-  width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   padding: 0.5rem 0 0.5rem 0.5rem;
   margin: 0.25rem 0;
-  background-color: azure;
+  background-color: #eee;
 }
 
 .item:first-child {
@@ -90,8 +89,7 @@ ul li::before {
   height: 48px;
   min-height: 48px;
   cursor: pointer;
-  margin-right: 0.5.rem;
-  margin-right: 1rem;
+  margin-right: 0.5rem;
 }
 
 .item input[type="checkbox"]:focus + label {
@@ -124,7 +122,7 @@ ul li::before {
   justify-content: flex-start;
   margin: 0.5rem 0 0;
   padding: 0 0.5rem 0.25rem;
-  border-bottom: 1px sol #eee;
+  border-bottom: 1px solid #eee;
 }
 
 .addForm label {
@@ -134,7 +132,7 @@ ul li::before {
 
 .addForm input[type="text"] {
   flex-grow: 1;
-  max-width: cal(100% - 50px);
+  max-width: calc(100% - 50px);
   min-height: 48px;
   font-size: 1rem;
   padding: 0.25rem;
@@ -156,7 +154,31 @@ button {
 
 button:focus,
 button:hover {
-  color: #fff;
+  color: white;
   background-color: limegreen;
+  outline: none;
+}
+
+.searchForm {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin: 0.25rem 0 0;
+  padding: 0 0.5rem 0.25rem;
+  border-bottom: 1px solid #eee;
+}
+
+.searchForm label {
+  position: absolute;
+  left: -99999px;
+}
+
+.searchForm input[type="text"] {
+  flex-grow: 1;
+  max-width: 100%;
+  min-height: 48px;
+  font-size: 1rem;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
   outline: none;
 }
