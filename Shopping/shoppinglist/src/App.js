@@ -19,7 +19,7 @@ function App() {
     const fetchItems = async () => {
       try {
         const response = await fetch(API_URL);
-        if (!response.ok) throw Error("API is not working");
+        if (!response.ok) throw Error("Did not receive expected data");
         const listItems = await response.json();
         setItems(listItems);
         setFetchError(null);
@@ -29,9 +29,8 @@ function App() {
         setIsLoading(false);
       }
     };
-    setTimeout(() => {
-      fetchItems();
-    }, 2000);
+
+    setTimeout(() => fetchItems(), 2000);
   }, []);
 
   const addItem = async (item) => {
@@ -51,16 +50,33 @@ function App() {
     if (result) setFetchError(result);
   };
 
-  const handleCheck = (id) => {
+  const handleCheck = async (id) => {
     const listItems = items.map((item) =>
       item.id === id ? { ...item, checked: !item.checked } : item
     );
     setItems(listItems);
+
+    const myItem = listItems.filter((item) => item.id === id);
+    const updateOptions = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ checked: myItem[0].checked }),
+    };
+    const reqUrl = `${API_URL}/${id}`;
+    const result = await apiRequest(reqUrl, updateOptions);
+    if (result) setFetchError(result);
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     const listItems = items.filter((item) => item.id !== id);
     setItems(listItems);
+
+    const deleteOptions = { method: "DELETE" };
+    const reqUrl = `${API_URL}/${id}`;
+    const result = await apiRequest(reqUrl, deleteOptions);
+    if (result) setFetchError(result);
   };
 
   const handleSubmit = (e) => {
@@ -82,7 +98,6 @@ function App() {
       <main>
         {isLoading && <p>Loading Items...</p>}
         {fetchError && <p style={{ color: "red" }}>{`Error: ${fetchError}`}</p>}
-
         {!fetchError && !isLoading && (
           <Content
             items={items.filter((item) =>
