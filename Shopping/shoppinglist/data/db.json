@@ -1,3 +1,9 @@
 {
-  "items": []
+  "items": [
+    {
+      "id": 3,
+      "checked": false,
+      "item": "milk"
+    }
+  ]
 }
